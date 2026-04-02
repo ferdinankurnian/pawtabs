@@ -30,8 +30,8 @@
     const cx = 60, cy = 60, r = 54;
     ctx.clearRect(0, 0, 120, 120);
 
-    const tickColor = variant === 'dark' ? 'rgba(82,82,91,.9)' : 'rgba(160,160,170,.9)';
-    const minorTickColor = variant === 'dark' ? 'rgba(39,39,42,.9)' : 'rgba(200,200,210,.9)';
+    const tickColor = variant === 'dark' ? 'rgba(161,161,170,.85)' : 'rgba(82,82,91,.85)';
+    const minorTickColor = variant === 'dark' ? 'rgba(63,63,70,.5)' : 'rgba(180,180,190,.4)';
     const numberColor = variant === 'dark' ? 'rgba(161,161,170,.85)' : 'rgba(63,63,70,.85)';
 
     for (let i = 0; i < 60; i++) {
@@ -41,7 +41,7 @@
       ctx.moveTo(cx + Math.cos(a) * (r - 5), cy + Math.sin(a) * (r - 5));
       ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
       ctx.strokeStyle = maj ? tickColor : minorTickColor;
-      ctx.lineWidth = 0.6;
+      ctx.lineWidth = maj ? 1.5 : 0.6;
       ctx.stroke();
     }
 
@@ -51,7 +51,7 @@
     ctx.textBaseline = 'middle';
     for (let n = 1; n <= 12; n++) {
       const a = (n / 12) * Math.PI * 2 - Math.PI / 2;
-      const nr = r - 18;
+      const nr = r - 14;
       ctx.fillText(String(n), cx + Math.cos(a) * nr, cy + Math.sin(a) * nr);
     }
   }
