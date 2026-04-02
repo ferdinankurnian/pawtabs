@@ -31,7 +31,7 @@
     ctx.clearRect(0, 0, 120, 120);
 
     const tickColor = variant === 'dark' ? 'rgba(161,161,170,.85)' : 'rgba(82,82,91,.85)';
-    const minorTickColor = variant === 'dark' ? 'rgba(63,63,70,.5)' : 'rgba(180,180,190,.4)';
+    const minorTickColor = variant === 'dark' ? 'rgba(63,63,70,.65)' : 'rgba(180,180,190,.55)';
     const numberColor = variant === 'dark' ? 'rgba(161,161,170,.85)' : 'rgba(63,63,70,.85)';
 
     for (let i = 0; i < 60; i++) {
