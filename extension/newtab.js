@@ -1,6 +1,6 @@
-import { start } from './app/immutable/entry/start._4i8Uo-I.js';
-import * as app from './app/immutable/entry/app.BnSLbrKS.js';
+import { start } from './app/immutable/entry/start.CzMQ-blz.js';
+import * as app from './app/immutable/entry/app.CKRA8tMU.js';
 
-window.__sveltekit_1y2wgca = { base: '' };
+window.__sveltekit_1rj5n4j = { base: '' };
 history.replaceState({}, '', '/');
 start(app, document.getElementById('svelte'));

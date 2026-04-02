@@ -114,9 +114,9 @@
   transform-origin: bottom center;
   border-radius: 999px;
 }
-.hour  { width: 5px; height: 32px; background: #ef4444; margin-left: -2.5px; }
+.hour  { width: 3.5px; height: 32px; background: #ef4444; margin-left: -1.75px; }
 .hour.light { background: #dc2626; }
-.min   { width: 5px; height: 42px; background: var(--text); margin-left: -2.5px; opacity: .5; }
+.min   { width: 3px; height: 42px; background: var(--text); margin-left: -1.5px; opacity: .5; }
 .min.light { background: #52525b; opacity: .7; }
 .sec   { width: 1px;   height: 48px; background: var(--muted); margin-left: -.5px; }
 .sec.light { background: #a1a1aa; }
