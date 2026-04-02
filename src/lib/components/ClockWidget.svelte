@@ -114,12 +114,12 @@
   transform-origin: bottom center;
   border-radius: 999px;
 }
-.hour  { width: 3.5px; height: 32px; background: #ef4444; margin-left: -1.75px; }
-.hour.light { background: #dc2626; }
-.min   { width: 3px; height: 42px; background: var(--text); margin-left: -1.5px; opacity: .5; }
-.min.light { background: #52525b; opacity: .7; }
-.sec   { width: 1px;   height: 48px; background: var(--muted); margin-left: -.5px; }
-.sec.light { background: #a1a1aa; }
+.hour  { width: 3.5px; height: 32px; background: var(--text); margin-left: -1.75px; opacity: 1; }
+.hour.light { background: #18181b; opacity: 1; }
+.min   { width: 3px; height: 42px; background: var(--text); margin-left: -1.5px; opacity: .6; }
+.min.light { background: #3f3f46; opacity: .7; }
+.sec   { width: 1px;   height: 48px; background: #ef4444; margin-left: -.5px; }
+.sec.light { background: #dc2626; }
 .dot {
   position: absolute; top: 50%; left: 50%;
   width: 6px; height: 6px;
