@@ -31,6 +31,8 @@
     ctx.clearRect(0, 0, 120, 120);
 
     const tickColor = variant === 'dark' ? 'rgba(82,82,91,.9)' : 'rgba(160,160,170,.9)';
+    const minorTickColor = variant === 'dark' ? 'rgba(39,39,42,.9)' : 'rgba(200,200,210,.9)';
+    const numberColor = variant === 'dark' ? 'rgba(161,161,170,.85)' : 'rgba(63,63,70,.85)';
 
     for (let i = 0; i < 60; i++) {
       const a = (i / 60) * Math.PI * 2 - Math.PI / 2;
