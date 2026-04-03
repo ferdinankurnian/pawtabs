@@ -1,25 +1,25 @@
 # PawTabs
 
-minimalist new tab extension untuk chrome/edge. bento-style dashboard buat routine tracking, links, clock, github activity, sama productivity tools.
+minimalist new tab extension for chrome/edge. bento-style dashboard for routine tracking, links, clock, github activity, and productivity tools.
 
 ## features
 
 - **analog clock** - clean analog + digital time display
-- **routine tracker** - daily habits dengan streak counter 🔥
-- **github activity** - contribution heatmap real-time
-- **quick links** - bookmark favorit dengan custom icons
+- **routine tracker** - daily habits with streak counter 🔥
+- **github activity** - real-time contribution heatmap
+- **quick links** - favorite bookmarks with custom icons
 - **search** - instant web search
 - **todo list** - simple task tracking
 - **focus mode** - daily focus reminder
-- **drag & drop** - atur layout sesuka lo
-- **scrollable grid** - unlimited widgets ke bawah
+- **drag & drop** - arrange layout however you want
+- **scrollable grid** - unlimited widgets downwards
 
 ## tech stack
 
 - svelte + sveltekit
 - vite
 - chrome extension manifest v3
-- localStorage untuk persistence
+- localStorage for persistence
 
 ## development
 
@@ -36,15 +36,15 @@ npm run build:extension
 
 ## install extension
 
-1. jalanin `npm run build:extension`
-2. buka `chrome://extensions`
-3. nyalain **developer mode**
-4. klik **load unpacked**
-5. pilih folder `extension/`
+1. run `npm run build:extension`
+2. open `chrome://extensions`
+3. enable **developer mode**
+4. click **load unpacked**
+5. select `extension/` folder
 
 ## customization
 
-- **edit layout**: klik "edit layout" di kanan atas
+- **edit layout**: click "edit layout" in top right
 - **widget variants**: resize widgets (1x1, 2x1, 1x2, 2x2, 1x3)
 - **routine colors**: custom color per routine
 - **clock theme**: dark/light mode
@@ -54,7 +54,7 @@ npm run build:extension
 ```
 src/
 ├── lib/
-│   ├── components/       # semua widget components
+│   ├── components/       # all widget components
 │   └── stores.js         # state management
 ├── routes/
 │   └── +page.svelte      # main dashboard
@@ -64,10 +64,10 @@ src/
 
 ## notes
 
-- data disimpan di localStorage browser
-- streak counter track consecutive days
-- github widget butuh username di settings
-- scroll support buat unlimited widgets
+- data stored in browser localStorage
+- streak counter tracks consecutive days
+- github widget requires username in settings
+- scroll support for unlimited widgets
 
 ## license
 
