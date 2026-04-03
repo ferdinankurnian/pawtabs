@@ -23,14 +23,14 @@ const DEFAULTS = {
   ],
   gh: '',
   widgetOrder: [
-    { id: 'clock' },
-    { id: 'search', variant: '1x1' },
-    { id: 'focus' },
+    { id: 'clock', variant: '1x2' },
+    { id: 'routine', variant: '2x1' },
+    { id: 'github', variant: '1x2' },
+    { id: 'links', variant: '1x3' },
+    { id: 'search', variant: '2x1' },
+    { id: 'todo', variant: '2x2' },
     { id: 'reminder' },
-    { id: 'github' },
-    { id: 'links', variant: '1x2' },
-    { id: 'todo' },
-    { id: 'routine' },
+    { id: 'focus', variant: '1x1' },
   ],
 };
 
@@ -130,4 +130,42 @@ export const store = createStore();
 export function todayKey() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+export function dateKeyBefore(dateKey, days) {
+  const [y, m, d] = dateKey.split('-').map(Number);
+  const date = new Date(y, m - 1, d);
+  date.setDate(date.getDate() - days);
+  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+}
+
+export function calculateStreak(routineId, checks) {
+  const c = checks[routineId];
+  if (!c) return 0;
+  
+  const today = todayKey();
+  let streak = 0;
+  let checkDate = today;
+  
+  // migrate old format
+  if (typeof c === 'string') {
+    return c === today ? 1 : 0;
+  }
+  
+  // if today not done yet, start from yesterday
+  if (!c[today]) {
+    checkDate = dateKeyBefore(today, 1);
+  }
+  
+  // count consecutive days backwards
+  for (let i = 0; i < 365; i++) {
+    if (c[checkDate]) {
+      streak++;
+      checkDate = dateKeyBefore(checkDate, 1);
+    } else {
+      break;
+    }
+  }
+  
+  return streak;
 }

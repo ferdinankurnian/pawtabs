@@ -1,10 +1,13 @@
 <script>
-  import { store, todayKey } from '$lib/stores.js';
+  import { store, todayKey, calculateStreak } from '$lib/stores.js';
   import { dndzone } from 'svelte-dnd-action';
 
   $: routines = $store.routines;
   $: checks   = $store.routineChecks;
-  $: done     = routines.filter(r => checks[r.id] === todayKey()).length;
+  $: done     = routines.filter(r => {
+    const c = checks[r.id];
+    return typeof c === 'string' ? c === todayKey() : c?.[todayKey()];
+  }).length;
   $: pct      = routines.length ? (done / routines.length) * 100 : 0;
   let showForm = false;
   let draft = '';
@@ -15,8 +18,22 @@
   function toggle(id) {
     store.update(s => {
       const c = { ...s.routineChecks };
-      if (c[id] === todayKey()) delete c[id];
-      else c[id] = todayKey();
+      const today = todayKey();
+      
+      // migrate old format to new format
+      if (typeof c[id] === 'string') {
+        c[id] = { [c[id]]: true };
+      }
+      
+      // toggle today
+      if (!c[id]) c[id] = {};
+      if (c[id][today]) {
+        delete c[id][today];
+        if (Object.keys(c[id]).length === 0) delete c[id];
+      } else {
+        c[id] = { ...c[id], [today]: true };
+      }
+      
       return { ...s, routineChecks: c };
     });
   }
@@ -74,11 +91,15 @@
       <div class="empty">no routines yet — add in settings</div>
     {/if}
     {#each routines as r (r.id)}
-      {@const isDone = checks[r.id] === todayKey()}
+      {@const c = checks[r.id]}
+      {@const isDone = typeof c === 'string' ? c === todayKey() : c?.[todayKey()]}
+      {@const streak = calculateStreak(r.id, checks)}
       <button class="item" class:done={isDone} on:click={() => toggle(r.id)}>
         <div class="box" style={`--accent:${r.color || '#22c55e'}`}>{isDone ? '✓' : ''}</div>
         <span class="rtxt">{r.text}</span>
-        <span class="drag">⠿</span>
+        {#if streak > 0}
+          <span class="streak" style={`color:${r.color || '#22c55e'}`}>{streak} 🔥</span>
+        {/if}
       </button>
     {/each}
   </div>
@@ -123,8 +144,12 @@
   color: inherit; text-align: left;
   cursor: pointer;
 }
-.drag { color: var(--muted2); font-size: 14px; cursor: pointer; margin-left: auto; user-select: none; }
-.item:hover .drag { color: var(--text); }
+.streak {
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: auto;
+  opacity: 0.9;
+}
 .box {
   width: 18px; height: 18px;
   border: 1px solid var(--accent, var(--border2)); border-radius: 999px;

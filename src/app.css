@@ -25,7 +25,8 @@ html, body {
   color: var(--text);
   font-family: 'Geist', sans-serif;
   font-size: 15px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar { width: 3px; height: 3px; }
